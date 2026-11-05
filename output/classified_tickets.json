@@ -1,0 +1,58 @@
+[
+    {
+        "ticket_id": "TKT-001",
+        "customer_message": "I was charged twice for my monthly subscription. Please refund the extra payment.",
+        "category": "Billing",
+        "urgency": "High",
+        "suggested_action": "Investigate the double charge and issue a refund for the extra payment.",
+        "status": "success"
+    },
+    {
+        "ticket_id": "TKT-002",
+        "customer_message": "The mobile application crashes every time I click the checkout button. I cannot place any orders.",
+        "category": "Technical",
+        "urgency": "High",
+        "suggested_action": "Escalate the app crash issue to the mobile development team to investigate the checkout flow bug.",
+        "status": "success"
+    },
+    {
+        "ticket_id": "TKT-003",
+        "customer_message": "How can I change the email address associated with my account?",
+        "category": "Account",
+        "urgency": "Low",
+        "suggested_action": "Provide the customer with instructions on how to update their email address in the account settings.",
+        "status": "success"
+    },
+    {
+        "ticket_id": "TKT-004",
+        "customer_message": "My package was marked as delivered yesterday, but I have not received it. I need it before tomorrow.",
+        "category": "Shipping",
+        "urgency": "High",
+        "suggested_action": "Contact the delivery carrier to investigate the misdelivered package and arrange for an urgent re-shipment or resolution.",
+        "status": "success"
+    },
+    {
+        "ticket_id": "TKT-005",
+        "customer_message": "I cannot log in to my account. I also received a password change notification that I did not request. Please help immediately.",
+        "category": "Account",
+        "urgency": "Critical",
+        "suggested_action": "Immediately secure the account to prevent unauthorized access, verify the user's identity, and help them reset their password.",
+        "status": "success"
+    },
+    {
+        "ticket_id": "TKT-006",
+        "customer_message": "Could you tell me whether your customer support service is available on weekends?",
+        "category": "Unclassified",
+        "urgency": "Unknown",
+        "suggested_action": "Manual review required.",
+        "status": "failed"
+    },
+    {
+        "ticket_id": "TKT-007",
+        "customer_message": "The website displays a blank page after I sign in. I have tried refreshing the page and using another browser, but the problem continues.",
+        "category": "Unclassified",
+        "urgency": "Unknown",
+        "suggested_action": "Manual review required.",
+        "status": "failed"
+    }
+]

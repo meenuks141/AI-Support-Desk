@@ -1,0 +1,30 @@
+[
+    {
+        "id": "TKT-001",
+        "message": "I was charged twice for my monthly subscription. Please refund the extra payment."
+    },
+    {
+        "id": "TKT-002",
+        "message": "The mobile application crashes every time I click the checkout button. I cannot place any orders."
+    },
+    {
+        "id": "TKT-003",
+        "message": "How can I change the email address associated with my account?"
+    },
+    {
+        "id": "TKT-004",
+        "message": "My package was marked as delivered yesterday, but I have not received it. I need it before tomorrow."
+    },
+    {
+        "id": "TKT-005",
+        "message": "I cannot log in to my account. I also received a password change notification that I did not request. Please help immediately."
+    },
+    {
+        "id": "TKT-006",
+        "message": "Could you tell me whether your customer support service is available on weekends?"
+    },
+    {
+        "id": "TKT-007",
+        "message": "The website displays a blank page after I sign in. I have tried refreshing the page and using another browser, but the problem continues."
+    }
+]

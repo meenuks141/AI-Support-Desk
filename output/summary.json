@@ -1,0 +1,16 @@
+{
+    "total_tickets": 7,
+    "successfully_classified": 5,
+    "failed_tickets": 2,
+    "tickets_by_category": {
+        "Billing": 1,
+        "Technical": 1,
+        "Account": 2,
+        "Shipping": 1
+    },
+    "tickets_by_urgency": {
+        "High": 3,
+        "Low": 1,
+        "Critical": 1
+    }
+}
