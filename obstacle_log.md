@@ -1,45 +1,115 @@
-Obstacle Log – AI Support Desk
+# Obstacle Log – AI Support Desk
 
-Project: AI Support Desk
+## Project Overview
 
-1. API Integration Issues
+The AI Support Desk project uses Python and Google’s Gemini API to classify customer support tickets based on category, urgency, and suggested actions.
 
-Obstacle: Connecting the Python application with the Gemini API required installing the appropriate SDK and configuring API authentication.
+During development and testing, I encountered the following challenges.
 
-Solution: Installed the Google GenAI SDK and configured the API key using environment variables and the python-dotenv library.
+## 1. Gemini API Configuration
 
-2. JSON Response Formatting
+Obstacle:
 
-Obstacle: LLM responses may sometimes contain unexpected formatting, making them difficult to parse.
+Initially, connecting the Python application to the Gemini API required configuring the API key and setting up the appropriate SDK.
 
-Solution: Used JSON response mode and Python’s json.loads() function to process the model response. Added validation to ensure the expected fields were returned.
+Solution:
 
-3. API Errors and Failed Requests
+Installed the Google GenAI SDK and python-dotenv package. Stored the API key in a .env file and loaded it using load_dotenv().
 
-Obstacle: Temporary API failures and unavailable model responses can interrupt ticket processing.
+Created a separate test_gemini.py script to verify the API connection before running the main application.
 
-Solution: Implemented try-except handling and retry attempts. Tickets that repeatedly fail are marked for manual review.
+## 2. Structured JSON Responses
 
-4. API Key Security
+Obstacle:
 
-Obstacle: Storing API credentials directly in Python source code can expose sensitive information.
+The application needed consistent responses from the LLM instead of ordinary descriptive text. Unstructured responses could create difficulties during JSON parsing.
 
-Solution: Stored the API key in a separate .env file and added it to .gitignore to prevent accidental uploads.
+Solution:
 
-5. Structured Summary Generation
+Designed a specific prompt that instructed Gemini to return JSON containing exactly three fields:
 
-Obstacle: Individual ticket classifications needed to be converted into a consolidated overview.
+* category
+* urgency
+* suggested_action
 
-Solution: Used Python’s Counter module to calculate ticket counts by category and urgency.
+Used JSON response configuration and Python’s json.loads() to parse the response.
 
-Testing Notes
+Added validation to ensure the returned category, urgency, and suggested action followed the expected structure.
 
-* Programming Language: Python
-* LLM: Google Gemini
-* Libraries: Google GenAI, python-dotenv
-* Number of Sample Tickets: 7
-* Output Format: JSON
+## 3. API Rate Limit Exceeded
 
-Conclusion
+Obstacle:
 
-The project demonstrates how an LLM can automate customer support ticket classification and transform unstructured customer messages into structured information. Error handling and summary generation make the application more reliable and useful.
+While processing seven sample tickets, the Gemini API returned a 429 RESOURCE_EXHAUSTED error after processing five tickets successfully.
+
+The error occurred because the free-tier request-per-minute quota had been exceeded.
+
+Solution:
+
+Implemented a try/except mechanism with retry attempts to prevent API failures from crashing the application.
+
+Tickets that could not be processed after the retry attempts were marked as failed and assigned a manual review status.
+
+A longer retry delay and request spacing were identified as improvements for handling rate limits more effectively.
+
+## 4. Handling Failed Classifications
+
+Obstacle:
+
+The application needed to continue processing even when an individual ticket failed because of an API error or an invalid response.
+
+Solution:
+
+Implemented exception handling and returned a fallback result for unsuccessful classifications.
+
+Failed tickets were assigned:
+
+* Category: Unclassified
+* Urgency: Unknown
+* Suggested Action: Manual review required.
+* Status: Failed
+
+This allowed the remaining application workflow and summary generation to continue.
+
+## 5. Generating Classification Summaries
+
+Obstacle:
+
+After processing the tickets, the results needed to be organized into a summary showing the number of tickets in each category and urgency level.
+
+Solution:
+
+Used Python’s Counter from the collections module to calculate ticket counts.
+
+Generated separate JSON files for classified ticket results and the overall summary.
+
+## 6. API Key Security
+
+Obstacle:
+
+The Gemini API key needed to be protected when publishing the project to GitHub.
+
+Solution:
+
+Stored the API key in a local .env file and configured .gitignore to exclude it from version control.
+
+Created a .env.example file containing placeholder configuration for other developers.
+
+## Testing Results
+
+The application was tested using seven sample customer support tickets.
+
+Metric	Result
+Total Tickets	7
+Successfully Classified	5
+Failed Tickets	2
+
+The five successful classifications demonstrated the expected category and urgency identification.
+
+The remaining two tickets demonstrated the application’s API error-handling and failure-management functionality.
+
+## Conclusion
+
+The development process provided practical experience in integrating an LLM with Python, generating structured JSON responses, handling API exceptions, managing API credentials, and producing automated summaries.
+
+The project also highlighted the importance of understanding API rate limits and implementing appropriate retry strategies.
